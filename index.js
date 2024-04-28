@@ -83,6 +83,12 @@ app.put('/updateItem/:id',async(req,res) => {
   
 })
 
+app.delete('/delete/:id',async(req,res)=>{
+  const result = await itemCollection.deleteOne({_id:new ObjectId(req.params.id)}) 
+  console.log(result);
+  res.send(result)
+}) 
+
 
 
 
