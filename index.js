@@ -59,6 +59,13 @@ app.get('/singleItem/:id',async(req,res)=>{
   res.send(result)
 })
 
+app.get('/viewDetails/:id',async(req,res)=>{
+  const result = await itemCollection.findOne({_id: new ObjectId (req.params.id),})
+  console.log(result)
+  res.send(result)
+})
+
+
 app.put('/updateItem/:id',async(req,res) => {
   console.log(req.params.id)
   const query = {_id:new ObjectId(req.params.id) };
