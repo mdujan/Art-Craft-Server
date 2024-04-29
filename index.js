@@ -59,11 +59,11 @@ app.get('/singleItem/:id',async(req,res)=>{
   res.send(result)
 })
 
-app.get('/viewDetails/:id',async(req,res)=>{
-  const result = await itemCollection.findOne({_id: new ObjectId (req.params.id),})
-  console.log(result)
-  res.send(result)
-})
+// app.get('/viewDetails/:id',async(req,res)=>{
+//   const result = await itemCollection.findOne({_id: new ObjectId (req.params.id),})
+//   console.log(result)
+//   res.send(result)
+// })
 
 
 app.put('/updateItem/:id',async(req,res) => {
@@ -95,6 +95,15 @@ app.delete('/delete/:id',async(req,res)=>{
   console.log(result);
   res.send(result)
 }) 
+
+// sort-->
+// app.get('/filter',async(req,res)=>{
+//   const cursor = itemCollection.find({},{customization});
+//   const result = await cursor.toArray();
+//   res.send(result);
+// })
+
+
 
 
 
