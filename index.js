@@ -7,11 +7,16 @@ const port = process.env.PORT || 5000;
 
 // ??MIDDLEWARE
 
-app.use(cors());
+const corsOptions ={
+  origin:'*', 
+  credentials:true,
+  optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 app.use(express.json());
 
-//pass:      n41G4mrB2cgKDylX
-//user:      craft      
+     
 
 
 
@@ -29,8 +34,9 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     const itemCollection =client.db('itemDB').collection('items')
+    const textileCollection =client.db('textileDB').collection('textile')
 
 
 
@@ -102,7 +108,17 @@ app.delete('/delete/:id',async(req,res)=>{
 //   const result = await cursor.toArray();
 //   res.send(result);
 // })
-
+app.get('/textile',async(req,res)=>{
+  const cursor = textileCollection.find();
+  const result = await cursor.toArray();
+  res.send(result);
+})
+app.get('/textile/:name',async(req,res)=>{
+  const cursor=itemCollection.find({subcategory_name:req.params.name})
+  const result=await cursor.toArray()
+  res.send(result)
+  
+})
 
 
 
